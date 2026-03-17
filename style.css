@@ -80,3 +80,47 @@ body.won::after{
 	.card{padding:18px}
 }
 
+/* Background subtle movement */
+body{
+	background-size:200% 200%;
+	animation:bgShift 16s ease-in-out infinite;
+}
+@keyframes bgShift{
+	0%{background-position:0% 50%}
+	50%{background-position:100% 50%}
+	100%{background-position:0% 50%}
+}
+
+/* Button click pop */
+.btn.clicked{animation:btnPop .26s cubic-bezier(.2,.9,.3,1)}
+@keyframes btnPop{
+	0%{transform:translateY(0) scale(1)}
+	50%{transform:translateY(-6px) scale(1.04)}
+	100%{transform:translateY(0) scale(1)}
+}
+
+/* Message pop / fade */
+.message.animate{animation:msgPop .42s cubic-bezier(.2,.9,.3,1)}
+@keyframes msgPop{
+	0%{opacity:0; transform:translateY(6px) scale(.98)}
+	60%{opacity:1; transform:translateY(-6px) scale(1.02)}
+	100%{opacity:1; transform:translateY(0) scale(1)}
+}
+
+.message.lose{color:var(--danger); text-shadow:0 6px 26px rgba(255,107,107,0.10)}
+
+/* Lost visual + shake */
+body.lost::after{
+	content:""; position:fixed; left:50%; top:30%; width:1200px; height:800px; transform:translateX(-50%); pointer-events:none; background-image: radial-gradient(circle at 50% 50%, rgba(255,107,107,0.06), transparent 6%); mix-blend-mode:screen; opacity:1; animation:fadeLoss 1.2s ease-out forwards;
+}
+@keyframes fadeLoss{0%{transform:translateX(-50%) scale(0.6); opacity:0}20%{opacity:1}100%{transform:translateX(-50%) scale(1); opacity:0}}
+
+body.lost .card{box-shadow:0 14px 40px rgba(255,80,80,0.08); animation:shake .8s ease-in-out}
+@keyframes shake{0%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
+
+/* Ensure confetti for win is slightly more vibrant */
+body.won{--accent-2: #ffd166}
+
+/* small smoothing for inputs/buttons focus outlines */
+input[type=number], .btn{transition: box-shadow .18s ease, transform .12s ease, opacity .12s}
+

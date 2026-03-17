@@ -22,6 +22,9 @@ guessButton.addEventListener("click", function checkGuess() {
     message.innerText = "Ingresa un número entre 0 y 100"
 
   }
+  else if (attempts == 10){
+    message.innerText = "Perdiste, el número era " + secretNumber; 
+  }
   else {
     attempts += 1;
     let listaIntentosString = "";
@@ -53,6 +56,7 @@ guessButton.addEventListener("click", function checkGuess() {
     };
 
     intentosAnteriores.innerText = listaIntentosString;
+    input.value = ""
   }
 });
 
